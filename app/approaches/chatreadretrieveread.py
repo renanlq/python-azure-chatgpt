@@ -52,11 +52,11 @@ Question:
 Search query:
 """
 
-    def __init__(self, search_client: SearchClient, sourcepage_field: str, content_field: str, semantic_name str):
+    def __init__(self, search_client: SearchClient, sourcepage_field: str, content_field: str, semantic_config str):
         self.search_client = search_client
         self.sourcepage_field = sourcepage_field
         self.content_field = content_field
-        self.semantic_name = semantic_name
+        self.semantic_config = semantic_config
 
     def run(self, history: list[dict], overrides: dict) -> any:
         use_semantic_captions = True if overrides.get("semantic_captions") else False
@@ -82,7 +82,7 @@ Search query:
                                           query_type=QueryType.SEMANTIC, 
                                           query_language="en-US", 
                                           query_speller="lexicon", 
-                                          semantic_configuration_name=self.semantic_name, 
+                                          semantic_configuration_name=self.semantic_config, 
                                           top=3, 
                                           query_caption="extractive|highlight-false" if use_semantic_captions else None)
         else:
