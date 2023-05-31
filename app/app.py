@@ -67,5 +67,9 @@ def ensure_openai_token():
     global openai_token
     openai.api_key = f"{OPENAI_KEY}"
     
-if __name__ == "__main__":
-    app.run()
+# If needed to expose in a different port
+port = int(os.getenv("PORT") or 80)
+
+# Add host, port and debug
+if __name__ == '__main__':
+    app.run(host='127.0.0.1', port=port, debug=False)
